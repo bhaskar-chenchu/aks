@@ -1,21 +1,27 @@
-    {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-        "ResourceGroupLocation": {
-            "value": "West Europe"
-        },
-        "dnsPrefix": {
-            "value": "weugcswmsk8ssanbox"
-        },
-        "existingServicePrincipalObjectId": {
-            "value": "e975ac10-a9cc-4cae-bd7b-5f7f51e551ff"
-        },
-        "existingServicePrincipalClientId": {
-            "value": "fb3fd119-f2bb-4316-b737-18af99a89185"
-        },
-        "existingServicePrincipalClientSecret": {
-            "value": "tVQ2fyr6ZM7lmk5DII7bwmaSlDEAwIQYfgf3kQQJktc="
-        }
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "ResourceGroup": {
+       "value": "we-wmsnonprod-rg"
+    },
+    "ResourceGroupLocation": {
+       "value": "West Europe"
+    },
+    "DNS Prefix": {
+      "value": "weugcswmsk8ssanbox"
+    },
+    "Service Principal App ID": {
+      "value": "fb3fd119-f2bb-4316-b737-18af99a89185"
+    },
+    "Service Principal Object ID": {
+      "value": "e975ac10-a9cc-4cae-bd7b-5f7f51e551ff"
+    },
+    "Service Principal Secret": {
+      "value": "tVQ2fyr6ZM7lmk5DII7bwmaSlDEAwIQYfgf3kQQJktc="
+    },
+    "Network Plugin": {
+      "value": "kubenet"
     }
+  }
 }
