@@ -40,21 +40,21 @@
     },
     "variables": {
         "isKubenet": "[equals(parameters('Network Plugin'), 'kubenet')]",
-        "Max Pods": 200,
+        "Max Pods": 110,
         "Network Contributor Role": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', '4d97b98b-1d4f-4787-a291-c67834d212e7')]",
-        "VNET Name": "cluster-vnet",
-        "VNET Address Space": "172.16.0.0/18",
+        "VNET Name": "we-wmsnonprod-rg",
+        "VNET Address Space": "10.40.40.0/22",
         "Role Assignment Name": "[concat(variables('VNET Name'), '/Microsoft.Authorization/', guid(concat(resourceGroup().id), variables('Network Contributor Role')))]",
-        "AKS Subnet Address Space": "172.16.0.0/20",
-        "Service Subnet Address Space": "172.16.16.0/20",
-        "Pod Cidr": "[if(variables('isKubenet'), '10.16.0.1/16', '')]",
-        "Cluster-IPs Service Cidr": "10.0.0.0/16",
-        "Dns Service IP": "10.0.0.10",
-        "Docker Bridge Cidr": "10.2.0.1/16",
-        "kubernetes version": "1.11.4",
-        "VM Size": "Standard_B2ms",
+        "AKS Subnet Address Space": "10.40.40.0/26",
+        "Service Subnet Address Space": "10.40.40.192/20",
+        "Pod Cidr": "[if(variables('isKubenet'), '10.123.0.1/17', '')]",
+        "Cluster-IPs Service Cidr": "10.123.128.0/17",
+        "Dns Service IP": "10.123.0.10",
+        "Docker Bridge Cidr": "10.124.0.1/16",
+        "kubernetes version": "1.11.5",
+        "VM Size": "Standard_DS3_v2",
         "instance count": 3,
-        "ssh public key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC/DWLnsCzgNo4rXoafDwXRjXBCIyX8m6sPJRVfDSmYgND739wQsfBF/B8RCyU1z+tjmOr+CZYCu6w2FmVL8JDY/aPJC9nDtO5aZSZtAdKJH51PwODsI8E4mthPuC01CxRageEDeEW9u4CCu3HXq6gFBscOEsC1iTYO5gsaxotiGdJS2pYnNHDVTWqhbzi7UPx8xPKJ1M8LKkG2paZLYBHKIhjrxjrAjnnsLkFb/dhfdr9D65Mqf5OGy40X1vQv+rfbLtnpb1DMajlfwQtBQpHY2SnEFbSwQva/l/chyhc4b854Uhpc1XdkIcQYiz7pRagRsJ1u5lMusCAsE5gnGoEJ vplauzon@MININT-BK6A5VR"
+        "ssh public key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCkauo6KZ/ttx5ghfyZqiAdWIoh+Zjbyi2vm6Km5UdLXJprIVRSWkeW9FodD5I39aBy4w71UA1pTNPVlwDO9T87WOSNjcCi1i/6XBUpgChntHAtjcAOc8QClFHDNIvGotdxaxxwHoPrX6H0gAcrA4jVWmE0weIYvK2X4gRvrn3dWKK9LJzCGWvo4MID8q2YpQE4AQLdehj7/fR2Yvgil0CLXlbBCwFtZsPsbxLjaOhMSmzF+/akRjwrSXjRcsWXkyTjPfliS+hx4qaySS0nw630HkDTA+9sjPu9Po1hCqWVt1EyKGDbNihHeRim7UHVcfG6M5xtQt3wNiQzxkR1IrIn cbhaskar@GOTCND8272RMX"
     },
     "resources": [
         {
@@ -71,13 +71,13 @@
                 },
                 "subnets": [
                     {
-                        "name": "aks",
+                        "name": "weugcswmsk8ssanbox-aks",
                         "properties": {
                             "addressPrefix": "[variables('AKS Subnet Address Space')]"
                         }
                     },
                     {
-                        "name": "services",
+                        "name": "weugcswmsk8ssanbox-svc",
                         "properties": {
                             "addressPrefix": "[variables('Service Subnet Address Space')]"
                         }
@@ -100,7 +100,7 @@
         },
         {
             "type": "Microsoft.ContainerService/managedClusters",
-            "name": "cluster",
+            "name": "weugcswmsk8ssanbox",
             "apiVersion": "2018-03-31",
             "location": "[resourceGroup().location]",
             "dependsOn": [
@@ -130,7 +130,7 @@
                     }
                 ],
                 "linuxProfile": {
-                    "adminUsername": "hidden-admin",
+                    "adminUsername": "weugcswmsk8ssanbox-admin",
                     "ssh": {
                         "publicKeys": [
                             {
