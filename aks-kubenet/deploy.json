@@ -100,7 +100,7 @@
         },
         {
             "type": "Microsoft.ContainerService/managedClusters",
-            "name": "weugcswmsk8ssanbox",
+            "name": "cluster",
             "apiVersion": "2018-03-31",
             "location": "[resourceGroup().location]",
             "dependsOn": [
