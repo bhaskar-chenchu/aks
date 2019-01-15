@@ -100,7 +100,7 @@
         },
         {
             "type": "Microsoft.ContainerService/managedClusters",
-            "name": "cluster",
+            "name": "weugcswmsk8ssanbox",
             "apiVersion": "2018-03-31",
             "location": "[resourceGroup().location]",
             "dependsOn": [
@@ -152,7 +152,7 @@
     "outputs": {
         "controlPlaneFQDN": {
             "type": "string",
-            "value": "[reference('cluster').fqdn]"
+            "value": "[reference('weugcswmsk8ssanbox').fqdn]"
         }
     }
 }
